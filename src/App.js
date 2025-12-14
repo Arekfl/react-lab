@@ -12,10 +12,7 @@ function App() {
 
     let message;
     
-    if (title.length === 0) {
-        message = 'Podaj tytuł filmu!';
-    }
-    else if (title.length < 5) {
+    if (title.length < 5) {
         message = 'Tytuł jest za krótki, to nie może być dobry film.';
     } else if (title.length < 15) {
         message = 'Tytuł wygląda dobrze, to może być ciekawy film.';
@@ -25,10 +22,20 @@ function App() {
 
     return (
         <div>
-            <h1>My favourite movies to watch</h1>
-            <h2>My favourite movie for today is {title.toUpperCase()}</h2>
-            <input type="text" value={title.toUpperCase()} onChange={handleChange}/>
-            <p>{message}</p>           
+            <div>
+                <h1>My favourite movies to watch</h1>
+                <h2>My favourite movie for today is {title.toUpperCase()}</h2>
+                <input type="text" value={title.toUpperCase()} onChange={handleChange}/>
+                
+                <button type="button" onClick={() => alert(title)}>
+                    Pokaż tytuł filmu
+                </button>
+                <p>
+                    {title.length > 0 && <div>{message}</div>}
+                </p>   
+
+        
+            </div>
         </div>
     );
 }
