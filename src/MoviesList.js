@@ -1,8 +1,8 @@
-export default function MoviesList({movies}) {
+export default function MoviesList(props) {
     return <>
         <h2>Titles</h2>
         <ul>
-            {movies.map(movie => <li key={movie.title}>{movie.title}, {movie.year}</li>)}
+            {props.movies.map(movie => <li key={movie.title}>{movie.title}, {movie.year}</li>)}
         </ul>
     </>;
 }
