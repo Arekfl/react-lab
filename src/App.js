@@ -4,6 +4,12 @@ import 'milligram';
 
 function App() {
     const [title, setTitle] = useState('Wall-E');
+    const [movies, setMovies] = useState([
+        {title: "Wall-E"},
+        {title: "Pulp Fiction"},
+        {title: "Matrix"},
+        {title: "1670"},
+    ]);
 
     let message;
     if (title.length < 5) {
@@ -18,12 +24,11 @@ function App() {
         setTitle(event.target.value);
     }
 
-    const movies = [
-        {title: "Wall-E"},
-        {title: "Pulp Fiction"},
-        {title: "Matrix"},
-        {title: "1670"},
-    ];
+    function addMovie() {
+        const newMovie = {title: title};
+        setMovies([...movies, newMovie]);
+        setTitle('');
+    }
 
     return (
         <div className="container">
@@ -32,10 +37,10 @@ function App() {
             <ul>
                 {movies.map(movie => <li key={movie.title}>{movie.title}</li>)}
             </ul>
-            <h2>My favourite movie for today is {title}</h2>
+            <h2>Add a new movie</h2>
             {title.length > 0 && <div>{message}</div>}
-            <input type="text" value={title} onChange={handleChange}/>
-            <button onClick={() => alert(title)}>Pokaż tytuł filmu</button>
+            <input type="text" value={title} onChange={handleChange} placeholder="Enter movie title"/>
+            <button onClick={addMovie}>Add movie</button>
         </div>
     );
 }
